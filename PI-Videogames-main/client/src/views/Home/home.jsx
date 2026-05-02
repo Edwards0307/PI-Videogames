@@ -1,22 +1,20 @@
-import {
-  Paged,
-  CardsContainer,
-  Filter,
-  Order,
-  NavBar,
-} from "../../components/index";
+import { CardsContainer, Filter, Order, NavBar } from "../../components/index";
 import { useState } from "react";
+import style from "./home.module.css";
 
 const Home = () => {
   const [update, setUpdate] = useState(false);
 
   return (
-    <div>
+    <div className={style.page}>
       <NavBar />
-      <Order update={update} setUpdate={setUpdate} />
-      <Filter />
-      <Paged />
-      <CardsContainer />
+      <div className={style.controls}>
+        <Order update={update} setUpdate={setUpdate} />
+        <Filter />
+      </div>
+      <div className={style.content}>
+        <CardsContainer />
+      </div>
     </div>
   );
 };

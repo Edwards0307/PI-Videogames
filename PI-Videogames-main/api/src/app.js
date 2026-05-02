@@ -14,11 +14,16 @@ server.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 server.use(bodyParser.json({ limit: "50mb" }));
 server.use(cookieParser());
 server.use(morgan("dev"));
+const ALLOWED_ORIGINS = [
+  "http://localhost:3000",
+  "https://pi-videogames-main-ochre.vercel.app",
+];
+
 server.use((req, res, next) => {
-  res.header(
-    "Access-Control-Allow-Origin",
-    "https://pi-videogames-main-ochre.vercel.app"
-  ); // update to match the domain you will make the request from
+  const origin = req.headers.origin;
+  if (ALLOWED_ORIGINS.includes(origin)) {
+    res.header("Access-Control-Allow-Origin", origin);
+  }
   res.header("Access-Control-Allow-Credentials", "true");
   res.header(
     "Access-Control-Allow-Headers",

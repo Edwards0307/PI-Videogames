@@ -1,5 +1,31 @@
-.orderPaged {
+.pagination {
   display: flex;
   justify-content: center;
-  margin: 20px;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 8px 0 16px;
+}
+
+.pageBtn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 8px;
+  color: #94a3b8;
+  font-size: 0.875rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pageBtn:hover {
+  background: rgba(139, 92, 246, 0.18);
+  border-color: rgba(139, 92, 246, 0.5);
+  color: #a78bfa;
+  transform: translateY(-1px);
 }

@@ -10,18 +10,24 @@ const NavBar = () => {
   const handleChange = () => {
     dispatch(getGames());
   };
+
   return (
-    <div className={style.mainContainer}>
-      <Link to="/Home">
-        <button onClick={handleChange}>Home</button>
-      </Link>
+    <nav className={style.navbar}>
+      <div className={style.navContainer}>
+        <Link to="/Home" className={style.logo} onClick={handleChange}>
+          <span className={style.logoIcon}>VG</span>
+          <span className={style.logoText}>Videogames</span>
+        </Link>
 
-      <SearchBar />
+        <div className={style.searchWrapper}>
+          <SearchBar />
+        </div>
 
-      <Link to="/Form">
-        <button>Create Game</button>
-      </Link>
-    </div>
+        <Link to="/Form" className={style.createBtn}>
+          + Create Game
+        </Link>
+      </div>
+    </nav>
   );
 };
 

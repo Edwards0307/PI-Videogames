@@ -8,16 +8,18 @@ const Paged = ({ gamesPerPage, allGames, paged }) => {
     pageNumber.push(i + 1);
   }
   pageNumber.pop();
+
   return (
-    <nav className={style.orderPaged}>
-      {pageNumber &&
-        pageNumber.map((number) => {
-          return (
-            <div key={number}>
-              <button onClick={() => paged(number)}>{number}</button>
-            </div>
-          );
-        })}
+    <nav className={style.pagination}>
+      {pageNumber.map((number) => (
+        <button
+          key={number}
+          className={style.pageBtn}
+          onClick={() => paged(number)}
+        >
+          {number}
+        </button>
+      ))}
     </nav>
   );
 };

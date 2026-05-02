@@ -11,21 +11,18 @@ import {
   CLEAN_STATE,
 } from "./action-types";
 
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
+
 export const getGames = () => {
   return async function (dispatch) {
-    const response = await axios.get(
-      "https://pi-videogames-main-production-fe42.up.railway.app/videogames"
-    );
-
+    const response = await axios.get(`${API_URL}/videogames`);
     return dispatch({ type: GET_GAMES, payload: response.data });
   };
 };
 
 export const getGamesDetail = (id) => {
   return function (dispatch) {
-    fetch(
-      `https://pi-videogames-main-production-fe42.up.railway.app/videogames/${id}`
-    )
+    fetch(`${API_URL}/videogames/${id}`)
       .then((response) => response.json())
       .then((data) => dispatch({ type: GET_GAMES_DETAIL, payload: data }));
   };
@@ -33,9 +30,7 @@ export const getGamesDetail = (id) => {
 
 export const getGamesName = (name) => {
   return function (dispatch) {
-    fetch(
-      `https://pi-videogames-main-production-fe42.up.railway.app/videogames?name=${name}`
-    )
+    fetch(`${API_URL}/videogames?name=${name}`)
       .then((response) => response.json())
       .then((data) => dispatch({ type: GET_GAMES_NAME, payload: data }));
   };

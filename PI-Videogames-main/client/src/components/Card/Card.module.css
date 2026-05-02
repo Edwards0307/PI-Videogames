@@ -1,36 +1,84 @@
-.container {
-  border: 1px solid rgb(66, 60, 60); /* linea de borde */
-  background-color: rgb(158, 154, 150); /* Color de fondo */
-  border-radius: 10px; /* Bordes redondeados */
-  width: 164px; /* Ancho */
-  height: fit-content;
-  padding: 10px;
-  box-shadow: 0, 0, 50px black; /* Sombra */
+.card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(139, 92, 246, 0.15);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
-.name {
-  font-weight: 600;
+.card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(139, 92, 246, 0.45);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(139, 92, 246, 0.15);
 }
 
-.info {
+.imageLink {
   display: block;
+  text-decoration: none;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
 }
 
 .img {
-  width: 95%;
-  border: 1px solid rgb(66, 60, 60); /* linea de borde */
-  border-radius: 10px; /* Bordes redondeados */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
 }
 
-.buttonContainer {
-  display: flex; /* Ponerlo a un costado y asi poder usar flex-end */
-  justify-content: flex-end; /* flex-end; Ponerlo al final en este caso a la derecha */
+.card:hover .img {
+  transform: scale(1.08);
 }
 
-.buttonContainer button {
-  margin: 3px, 3px, 0, 0; /* Se le da un margen al boton y se empieza desde arriba */
-  border: 1px solid rgb(66, 60, 60); /* linea de borde */
-  background-color: rgb(216, 69, 69);
-  color: antiquewhite;
-  border-radius: 4px; /* Bordes redondeados */
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(13, 13, 26, 0.85) 0%, transparent 55%);
+}
+
+.cardBody {
+  padding: 14px 16px 16px;
+}
+
+.name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  margin-bottom: 10px;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.released {
+  font-size: 0.73rem;
+  color: #64748b;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #a78bfa;
+}
+
+.star {
+  color: #f59e0b;
+  font-size: 0.85rem;
 }

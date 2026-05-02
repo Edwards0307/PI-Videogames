@@ -7,55 +7,45 @@ import style from "./CardsContainer.module.css";
 const CardsContainer = () => {
   const dispatch = useDispatch();
   const games = useSelector((state) => state.games);
-
   const currentPage = useSelector((state) => state.currentPage);
+  const [gamesPerPage] = useState(15);
 
-  /* const [currentPage, setCurrentPage] = useState(1); */ //Pagina en la que vamos arrancar
-  const [gamesPerPage] = useState(15); // Cantidad de juegos que queremos por paginas
-
-  // ahora voy a hacer logica numerica para el paginado
-  const indexOfLastGame = currentPage * gamesPerPage; //15
-  const indexOfFirstGame = indexOfLastGame - gamesPerPage; //0
+  const indexOfLastGame = currentPage * gamesPerPage;
+  const indexOfFirstGame = indexOfLastGame - gamesPerPage;
   const currentGames = games.slice(indexOfFirstGame, indexOfLastGame);
 
-  // declaro una funcion que va a modificar el estado local de CurrentPage, esto lo voy a pasar
-  // como prop al componente Paginated
-  const paged = (currentPage) => {
-    dispatch(resedPaged(currentPage));
+  const paged = (page) => {
+    dispatch(resedPaged(page));
   };
 
   useEffect(() => {
     dispatch(getGames());
   }, [dispatch]);
 
-  return (
-    <div className={style.containerWrapperList}>
-      <div className={style.cardContainer}>
-        {!currentGames.length ? (
-          <div>
-            <h1>Cargando</h1>
-          </div>
-        ) : (
-          currentGames.map((game) => {
-            return (
-              <div key={game?.id} className={style.wrapperList}>
-                <Card
-                  id={game?.id}
-                  name={game?.name}
-                  released={game?.released}
-                  rating={game?.rating}
-                  image={game?.image}
-                />
-              </div>
-            );
-          })
-        )}
+  if (!currentGames.length) {
+    return (
+      <div className={style.loading}>
+        <div className={style.spinner}></div>
+        <span className={style.loadingText}>Loading games...</span>
       </div>
-      <Paged
-        gamesPerPage={gamesPerPage}
-        allGames={games.length}
-        paged={paged}
-      />
+    );
+  }
+
+  return (
+    <div className={style.wrapper}>
+      <div className={style.cardGrid}>
+        {currentGames.map((game) => (
+          <Card
+            key={game?.id}
+            id={game?.id}
+            name={game?.name}
+            released={game?.released}
+            rating={game?.rating}
+            image={game?.image}
+          />
+        ))}
+      </div>
+      <Paged gamesPerPage={gamesPerPage} allGames={games.length} paged={paged} />
     </div>
   );
 };

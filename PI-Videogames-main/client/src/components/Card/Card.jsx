@@ -3,20 +3,23 @@ import { Link } from "react-router-dom";
 
 export default function Card({ id, name, released, rating, image }) {
   return (
-    <div className={style.container}>
-      <div className={style.name}>
-        <h2>{name}</h2>
-      </div>
-
-      <Link to={`/Detail/${id}`}>
-        <div className={style.info}>
-          <img className={style.img} src={image} alt="" />
+    <div className={style.card}>
+      <Link to={`/Detail/${id}`} className={style.imageLink}>
+        <div className={style.imageWrapper}>
+          <img className={style.img} src={image} alt={name} />
+          <div className={style.imageOverlay}></div>
         </div>
       </Link>
 
-      <h4>Released: {released}</h4>
-
-      <h4>Rating: {rating}</h4>
+      <div className={style.cardBody}>
+        <h3 className={style.name}>{name}</h3>
+        <div className={style.meta}>
+          <span className={style.released}>{released || "TBA"}</span>
+          <span className={style.rating}>
+            <span className={style.star}>★</span> {rating || "N/A"}
+          </span>
+        </div>
+      </div>
     </div>
   );
 }

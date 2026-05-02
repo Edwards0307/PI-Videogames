@@ -1,1 +1,19 @@
+.page {
+  min-height: 100vh;
+}
 
+.controls {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 24px 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 8px 24px 48px;
+}
