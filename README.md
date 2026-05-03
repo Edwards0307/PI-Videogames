@@ -22,25 +22,30 @@ A full-stack videogame catalog app built with React, Redux, Node.js, and Postgre
 
 ```
 ├── api/               # Express + Sequelize backend
+│   ├── index.js
 │   ├── src/
+│   │   ├── app.js
+│   │   ├── db.js
 │   │   ├── Controllers/
 │   │   ├── handlers/
+│   │   ├── helpers/
+│   │   ├── middlewares/
 │   │   ├── models/    # Videogame, Genre (many-to-many)
 │   │   ├── routes/
-│   │   └── app.js
-│   └── index.js
+│   │   └── Utils/
+│   └── tests/
 └── client/            # React + Redux frontend
     └── src/
-        ├── components/ # NavBar, Card, Filter, Order, Paged, SearchBar
+        ├── components/ # NavBar, Card, CardsContainer, Filter, Order, Paged, SearchBar
         ├── views/      # Landing, Home, Detail, Form
-        └── redux/      # store, reducer, actions
+        └── redux/      # store, reducer, actions, action-types
 ```
 
 ## Local Setup
 
 ### Prerequisites
 
-- Node.js >= 12.18.3
+- Node.js >= 14.0.0
 - PostgreSQL
 - A RAWG API key from [rawg.io/apidocs](https://rawg.io/apidocs)
 
@@ -70,9 +75,13 @@ psql -U postgres -c "CREATE DATABASE videogames;"
 npm start
 ```
 
-Sequelize will create all tables automatically on first run.
+Sequelize will create all tables automatically on first run. The API will be available at `http://localhost:3001`.
+
+> See [api/README.md](api/README.md) for full backend details.
 
 ### Frontend
+
+Open a new terminal from the project root:
 
 ```bash
 cd client
@@ -82,7 +91,9 @@ npm start
 
 The app will be available at `http://localhost:3000`.
 
-> By default the client points to `http://localhost:3001`. To use a different backend URL, set the `REACT_APP_API_URL` environment variable before running `npm start`.
+> By default the client points to `http://localhost:3001`. To use a different backend URL, set `REACT_APP_API_URL` before running `npm start`.
+
+> See [client/README.md](client/README.md) for full frontend details.
 
 ## API Endpoints
 
