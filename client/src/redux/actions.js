@@ -9,14 +9,19 @@ import {
   ORDER_GAMES_RATING,
   RESET_PAGED,
   CLEAN_STATE,
+  GET_GAMES_ERROR,
 } from "./action-types";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
 
 export const getGames = () => {
   return async function (dispatch) {
-    const response = await axios.get(`${API_URL}/videogames`);
-    return dispatch({ type: GET_GAMES, payload: response.data });
+    try {
+      const response = await axios.get(`${API_URL}/videogames`);
+      return dispatch({ type: GET_GAMES, payload: response.data });
+    } catch (error) {
+      return dispatch({ type: GET_GAMES_ERROR });
+    }
   };
 };
 

@@ -7,3 +7,4 @@ export const ORDER_GAMES_NAME = "ORDER_GAMES_NAME";
 export const ORDER_GAMES_RATING = "ORDER_GAMES_RATING";
 export const RESET_PAGED = "RESET_PAGED";
 export const CLEAN_STATE = "CLEAN_STATE";
+export const GET_GAMES_ERROR = "GET_GAMES_ERROR";

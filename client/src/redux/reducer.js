@@ -8,6 +8,7 @@ import {
   ORDER_GAMES_RATING,
   RESET_PAGED,
   CLEAN_STATE,
+  GET_GAMES_ERROR,
 } from "./action-types";
 
 const initialState = {
@@ -16,6 +17,7 @@ const initialState = {
   gamesDetail: [],
   sortGames: [],
   currentPage: 1,
+  gamesError: false,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -26,6 +28,13 @@ const rootReducer = (state = initialState, action) => {
         games: action.payload,
         backupGames: action.payload,
         sortGames: action.payload,
+        gamesError: false,
+      };
+
+    case GET_GAMES_ERROR:
+      return {
+        ...state,
+        gamesError: true,
       };
 
     case GET_GAMES_DETAIL:

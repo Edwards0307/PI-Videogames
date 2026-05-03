@@ -7,6 +7,7 @@ import style from "./CardsContainer.module.css";
 const CardsContainer = () => {
   const dispatch = useDispatch();
   const games = useSelector((state) => state.games);
+  const gamesError = useSelector((state) => state.gamesError);
   const currentPage = useSelector((state) => state.currentPage);
   const [gamesPerPage] = useState(15);
 
@@ -21,6 +22,19 @@ const CardsContainer = () => {
   useEffect(() => {
     dispatch(getGames());
   }, [dispatch]);
+
+  if (gamesError) {
+    return (
+      <div className={style.loading}>
+        <span className={style.loadingText}>
+          Could not connect to the server. Please try again later.
+        </span>
+        <button className={style.retryBtn} onClick={() => dispatch(getGames())}>
+          Retry
+        </button>
+      </div>
+    );
+  }
 
   if (!currentGames.length) {
     return (
