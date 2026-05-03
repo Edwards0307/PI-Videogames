@@ -16,8 +16,8 @@ server.use(cookieParser());
 server.use(morgan("dev"));
 const ALLOWED_ORIGINS = [
   "http://localhost:3000",
-  "https://pi-videogames-main-ochre.vercel.app",
-];
+  process.env.CLIENT_URL,
+].filter(Boolean);
 
 server.use((req, res, next) => {
   const origin = req.headers.origin;
